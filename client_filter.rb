@@ -7,8 +7,8 @@ Plugin.create(:cilent_filter) do
   filter_show_filter do |msgs|
     msgs = msgs.select{ |m|
       not exclude_client.any?{ |word|
-	    word.to_s.include?(m[:source])
-	  }
+        word.to_s.include?(m[:source]) if m[:source] != nil
+      }
     }
     [msgs]
   end
